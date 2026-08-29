@@ -78,6 +78,7 @@ const Quiz = () => {
   const [isResult, setisResult] = useState(false);
   const [quizScreen, setquizScreen] = useState(true)
   const [selectedOption, setSelectedOption] = useState(null);
+  const [score, setScore] = useState(0)
 
   let question = questions[currentQuestionIndex];
 
@@ -96,10 +97,16 @@ const Quiz = () => {
     setisResult(!isResult);
     setquizScreen(true);
     setcurrentQuestionIndex(0)
+    setScore(0)
   }
 
-  const handleButtons = (e,option) => {
+  const handleButtons = (option) => {
       setSelectedOption(option)
+
+      if(option === question.answer) {
+        setScore((prev) => prev + 1);
+      }
+
   }
 
   return (
@@ -116,18 +123,23 @@ const Quiz = () => {
         <div id="buttons-container">
           {question.options.map((option) => {
             return (
-            <button key={option} className={selectedOption === option 
+            <button key={option}
+              disabled={selectedOption !== null}
+              className={selectedOption === option 
               ? option === question.answer
               ? "correct" : "wrong"
               : ""
             }
-            onClick={(e) => handleButtons(e,option)}
+            onClick={(e) => handleButtons(option)}
             >{option}</button>
           )
           })}
         </div>
         <div id="bottom">
-          <button onClick={nextQuestion}>Next</button>
+          <button onClick={nextQuestion}
+            disabled={selectedOption === null}
+            >Next
+          </button>
           <p>
             {currentQuestionIndex + 1} of {questions.length} questions
           </p>
@@ -139,7 +151,7 @@ const Quiz = () => {
             <h2>Quiz App</h2>
           </div>
           <div id="result-screen">
-            <h3>You Scored 3 of 10</h3>
+            <h3>You Scored {score} of {questions.length}</h3>
             <div id="btn">
               <button onClick={handleReset}>Reset</button>
             </div>

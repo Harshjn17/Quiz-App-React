@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-html, body {
-   height: 100%;
-   width: 100%;
+html,
+body {
+  min-height: 100%;
+  width: 100%;
 }
 
 :root {
@@ -17,21 +18,26 @@ html, body {
 }
 
 body {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(#D8C7FF, #19006C);
+  padding: 20px;
+  background-image: linear-gradient(#d8c7ff, #19006c);
 }
 
+/* Main Container */
 #container {
-  min-width: 500px;
+  width: fit-content;
+  max-width: 500;
+  min-width: 450px;
   background-color: #fff;
   padding: 15px 20px;
   border-radius: 6px;
 }
 
+/* Heading */
 #heading {
-  /* background-color: crimson; */
   margin-bottom: var(--marginb);
   padding: 10px 0;
   border-bottom: 1px solid #000;
@@ -41,19 +47,20 @@ body {
   font-weight: 500;
 }
 
+/* Question */
 #question-text {
   margin-bottom: var(--marginb);
 }
 
 #question-text h3 {
-  /* max-width: 500px; */
   font-size: 16px;
   color: rgb(91, 88, 88);
   font-weight: 500;
   width: 100%;
-  /* text-transform: capitalize; */
+  line-height: 1.5;
 }
 
+/* Options */
 #buttons-container {
   display: flex;
   flex-direction: column;
@@ -62,6 +69,7 @@ body {
 }
 
 #buttons-container button {
+  width: 100%;
   padding: 13px 10px;
   text-align: start;
   border-radius: 4px;
@@ -69,8 +77,25 @@ body {
   font-size: 15px;
   background-color: #fff;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
+#buttons-container button:hover {
+  background-color: #f5f5f5;
+}
+
+/* Correct / Wrong */
+#buttons-container button.correct {
+  background-color: #dffff2;
+  border-color: #00d397;
+}
+
+#buttons-container button.wrong {
+  background-color: #ffebeb;
+  border-color: #ff4a4a;
+}
+
+/* Bottom */
 #bottom {
   text-align: center;
 }
@@ -78,7 +103,7 @@ body {
 #bottom button {
   padding: 14px 50px;
   border: none;
-  background-color: #53409B;
+  background-color: #53409b;
   color: #fff;
   border-radius: 3px;
   margin-bottom: 15px;
@@ -90,16 +115,18 @@ body {
   font-size: 14px;
 }
 
+/* Start Button */
 #start-btn {
   padding: 20px 40px;
   border: none;
   border-radius: 7px;
   font-size: large;
-  background-color: #53409B;
+  background-color: #53409b;
   color: #fff;
   cursor: pointer;
 }
 
+/* Result */
 #result-screen h3 {
   font-weight: 500;
   font-size: 20px;
@@ -115,7 +142,7 @@ body {
 #btn button {
   padding: 14px 50px;
   border: none;
-  background-color: #53409B;
+  background-color: #53409b;
   color: #fff;
   border-radius: 3px;
   margin-bottom: 15px;
@@ -123,12 +150,101 @@ body {
   cursor: pointer;
 }
 
-#buttons-container button.correct {
-  background-color: #dffff2;
-  border-color: #00d397;
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+
+  #container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  #question-text h3 {
+    font-size: 15px;
+  }
+
+  #buttons-container button {
+    font-size: 14px;
+    padding: 12px 10px;
+  }
+
+  #bottom button {
+    padding: 13px 40px;
+  }
 }
 
-#buttons-container button.wrong {
-  background-color: #FFEBEB;
-  border-color: #FF4A4A;
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 400px) {
+  body {
+    padding: 10px;
+  }
+
+  #container {
+    padding: 12px;
+  }
+
+  #heading {
+    padding: 8px 0;
+  }
+
+  #heading h2 {
+    font-size: 20px;
+  }
+
+  #question-text h3 {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  #buttons-container {
+    gap: 8px;
+  }
+
+  #buttons-container button {
+    padding: 11px 9px;
+    font-size: 13px;
+  }
+
+  #bottom button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  #bottom p {
+    font-size: 12px;
+  }
+
+  #result-screen h3 {
+    font-size: 17px;
+  }
+
+  #btn button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  #start-btn {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  #container {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 15px;
+  }
 }
