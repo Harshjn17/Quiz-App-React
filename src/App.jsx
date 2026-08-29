@@ -9,7 +9,6 @@ const App = () => {
   const handleStartbtn = () => {
     setisVisible(!isVisible)
     setisHide(!isHide)
-
   }
 
   return (

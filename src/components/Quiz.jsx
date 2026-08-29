@@ -77,13 +77,16 @@ const Quiz = () => {
   const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0);
   const [isResult, setisResult] = useState(false);
   const [quizScreen, setquizScreen] = useState(true)
+  const [selectedOption, setSelectedOption] = useState(null);
 
   let question = questions[currentQuestionIndex];
 
   const nextQuestion = () => {
+    setSelectedOption(null);
+
     if (currentQuestionIndex === 9) {
       setisResult(true);
-      setquizScreen(!quizScreen)
+      setquizScreen(false);
       return;
     }
     setcurrentQuestionIndex((prev) => prev + 1);
@@ -91,16 +94,12 @@ const Quiz = () => {
 
   const handleReset = () => {
     setisResult(!isResult);
-    setquizScreen(!quizScreen)
+    setquizScreen(true);
     setcurrentQuestionIndex(0)
   }
 
-  const handleButtons = (option) => {
-    if(question.answer === option) {
-      console.log(true);
-    } else {
-      console.log(false);
-    }
+  const handleButtons = (e,option) => {
+      setSelectedOption(option)
   }
 
   return (
@@ -116,9 +115,15 @@ const Quiz = () => {
         </div>
         <div id="buttons-container">
           {question.options.map((option) => {
-            return <button key={option}
-            onClick={() => handleButtons(option)}
-            >{option}</button>;
+            return (
+            <button key={option} className={selectedOption === option 
+              ? option === question.answer
+              ? "correct" : "wrong"
+              : ""
+            }
+            onClick={(e) => handleButtons(e,option)}
+            >{option}</button>
+          )
           })}
         </div>
         <div id="bottom">
