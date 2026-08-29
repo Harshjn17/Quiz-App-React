@@ -94,3 +94,25 @@ body {
   background-color: #53409B;
   color: #fff;
 }
+
+#result-screen h3 {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: rgb(91, 88, 88);
+}
+
+#btn {
+  display: flex;
+  justify-content: center;
+}
+
+#btn button {
+  padding: 14px 50px;
+  border: none;
+  background-color: #53409B;
+  color: #fff;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}

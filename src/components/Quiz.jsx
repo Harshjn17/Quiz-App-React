@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const Quiz = () => {
   const questions = [
@@ -73,35 +73,60 @@ const Quiz = () => {
       answer: "2",
     },
   ];
-  
-  const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0)
+
+  const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0);
+  const [isResult, setisResult] = useState(false);
+  const [quizScreen, setquizScreen] = useState(true)
 
   let question = questions[currentQuestionIndex];
 
   const nextQuestion = () => {
-    if(currentQuestionIndex === 9) return;
-    setcurrentQuestionIndex(prev => prev + 1);
-  }
+    if (currentQuestionIndex === 9) {
+      setisResult(!isResult);
+      setquizScreen(!quizScreen)
+      return;
+    }
+    setcurrentQuestionIndex((prev) => prev + 1);
+  };
 
   return (
-    <div id='container'>
+    <div id="container">
+      {quizScreen && <div id="quiz-screen">
         <div id="heading">
-            <h2>Quiz App</h2>
+          <h2>Quiz App</h2>
         </div>
         <div id="question-text">
-            <h3>{question.id}.{" "}{question.question}</h3>
+          <h3>
+            {question.id}. {question.question}
+          </h3>
         </div>
         <div id="buttons-container">
           {question.options.map((option) => {
-            return <button key={option}>{option}</button>
+            return <button key={option}>{option}</button>;
           })}
         </div>
         <div id="bottom">
           <button onClick={nextQuestion}>Next</button>
-          <p>{currentQuestionIndex + 1} of {questions.length} questions</p>
+          <p>
+            {currentQuestionIndex + 1} of {questions.length} questions
+          </p>
         </div>
+      </div>}
+      {isResult && (
+        <>
+          <div id="heading">
+            <h2>Quiz App</h2>
+          </div>
+          <div id="result-screen">
+            <h3>You Scored 3 of 10</h3>
+            <div id="btn">
+              <button>Reset</button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Quiz
+export default Quiz;
