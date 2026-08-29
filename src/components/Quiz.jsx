@@ -82,12 +82,26 @@ const Quiz = () => {
 
   const nextQuestion = () => {
     if (currentQuestionIndex === 9) {
-      setisResult(!isResult);
+      setisResult(true);
       setquizScreen(!quizScreen)
       return;
     }
     setcurrentQuestionIndex((prev) => prev + 1);
   };
+
+  const handleReset = () => {
+    setisResult(!isResult);
+    setquizScreen(!quizScreen)
+    setcurrentQuestionIndex(0)
+  }
+
+  const handleButtons = (option) => {
+    if(question.answer === option) {
+      console.log(true);
+    } else {
+      console.log(false);
+    }
+  }
 
   return (
     <div id="container">
@@ -102,7 +116,9 @@ const Quiz = () => {
         </div>
         <div id="buttons-container">
           {question.options.map((option) => {
-            return <button key={option}>{option}</button>;
+            return <button key={option}
+            onClick={() => handleButtons(option)}
+            >{option}</button>;
           })}
         </div>
         <div id="bottom">
@@ -120,7 +136,7 @@ const Quiz = () => {
           <div id="result-screen">
             <h3>You Scored 3 of 10</h3>
             <div id="btn">
-              <button>Reset</button>
+              <button onClick={handleReset}>Reset</button>
             </div>
           </div>
         </>
